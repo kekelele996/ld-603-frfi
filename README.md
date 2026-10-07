@@ -57,6 +57,9 @@ backend/src/routes, controllers, services, models, repositories, middlewares, co
 - DeviceType: constants/DeviceType、types/DeviceType、constructors、logTemplates、errorMessages、筛选器、展示组件/控制器均有引用。
 - InspectionStatus: constants/InspectionStatus、types/InspectionStatus、constructors、logTemplates、errorMessages、筛选器、展示组件/控制器均有引用。
 - HazardSeverity: constants/HazardSeverity、types/HazardSeverity、constructors、logTemplates、errorMessages、筛选器、展示组件/控制器均有引用。
+- RectifyStatus（PENDING/RECTIFYING/RECHECK_FAILED/CLOSED）: 前端 `constants/RectifyStatus.ts`、`constants/statusText.ts`、`utils/formatters.ts`、`utils/hazardView.ts`、隐患列表筛选器与 `HazardTicketCard` 状态徽标；后端 `constants/rectify_status.py`、`utils/formatters.py`、隐患 service。整改状态不再取建单值，统一由最近一次复验结论派生。
+- RecheckConclusion（PASS/FAIL）: 前端 `constants/RecheckConclusion.ts`、`constants/statusText.ts`、`utils/formatters.ts`、补记复验弹窗 `RecheckDialog`、复验时间线 `TimelineList`；后端 `constants/recheck_conclusion.py`、复验 DTO 工厂、隐患 service/controller 校验。
+- 复验记录落库于 `hazard_recheck` 表（`database/init.sql`），接口为 `PATCH /api/hazard-ticket/{id}/rectify`（补录整改说明）与 `POST /api/hazard-ticket/{id}/recheck`（补记复验日期/复验人/结论/续期）。同一设备最近两次复验均为 FAIL 时，后端在列表响应中给出 `repeat_hazard`、`repeat_rechecks` 与 `repeat_detail`。
 
 ## 为什么会牵一发动全身
 

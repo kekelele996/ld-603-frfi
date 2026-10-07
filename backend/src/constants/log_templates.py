@@ -27,6 +27,8 @@ LOG_TEMPLATES = {
     "HazardTicket.create",
     "HazardTicket.update",
     "HazardTicket.status",
-    "HazardTicket.export"
+    "HazardTicket.export",
+    "HazardTicket.rectify",
+    "HazardTicket.recheck"
   ]
 }

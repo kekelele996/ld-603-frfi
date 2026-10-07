@@ -53,6 +53,17 @@ CREATE TABLE IF NOT EXISTS hazard_ticket (
   closed_at TEXT
 );
 
+-- 隐患单复验记录：一张隐患单可多次复验，结论驱动整改状态/期限
+CREATE TABLE IF NOT EXISTS hazard_recheck (
+  id INTEGER PRIMARY KEY,
+  ticket_id INTEGER NOT NULL,
+  recheck_date TEXT NOT NULL,
+  inspector_name TEXT NOT NULL,
+  conclusion TEXT NOT NULL,
+  next_deadline TEXT,
+  created_at TEXT
+);
+
 CREATE TABLE IF NOT EXISTS audit_log (
   id INTEGER PRIMARY KEY,
   actor TEXT,
