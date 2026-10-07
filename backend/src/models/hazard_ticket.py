@@ -1,10 +1,13 @@
 from pydantic import BaseModel
+
+
 class HazardTicket(BaseModel):
-    id: int | float
-    result_id: int | float
+    id: int
+    result_id: int
     severity: str
-    owner_id: int | float
+    owner_id: int
+    owner_name: str = ""
     deadline: str
-    rectify_status: str
-    rectify_note: str
-    closed_at: str
+    rectify_note: str = ""
+    rectified_at: str = ""
+    closed_at: str = ""

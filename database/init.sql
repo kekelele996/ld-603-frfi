@@ -42,15 +42,29 @@ CREATE TABLE IF NOT EXISTS inspection_result (
   note TEXT
 );
 
+-- 隐患整改单：rectify_status / closed_at 为以复验结论为准的派生值，落库仅作快照
 CREATE TABLE IF NOT EXISTS hazard_ticket (
   id INTEGER PRIMARY KEY,
   result_id TEXT,
   severity TEXT,
   owner_id TEXT,
+  owner_name TEXT,
   deadline TEXT,
-  rectify_status TEXT,
   rectify_note TEXT,
-  closed_at TEXT
+  rectified_at TEXT,
+  closed_at TEXT,
+  rectify_status TEXT
+);
+
+-- 复验记录：一张隐患单可多次复验，最近一条结论决定整单状态与期限
+CREATE TABLE IF NOT EXISTS verification (
+  id INTEGER PRIMARY KEY,
+  ticket_id INTEGER,
+  verified_at TEXT,
+  inspector TEXT,
+  result TEXT,
+  note TEXT,
+  new_deadline TEXT
 );
 
 CREATE TABLE IF NOT EXISTS audit_log (

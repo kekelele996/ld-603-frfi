@@ -1,162 +1,96 @@
+"""本地内存种子数据（演示/评审用，禁止接入第三方 API）。
+
+隐患业务链覆盖：
+- ticket 1 / ticket 2：同一台灭火器 EXT-1001，两次复验均未通过 → 重复隐患
+- ticket 3：整改人已补录说明，待复验
+- ticket 4：刚派单，待整改且已逾期
+- ticket 5：复验通过，已闭环
+"""
+
 seed = {
-  "building": [
-    {
-      "id": 1,
-      "name": "name 1",
-      "campus": "campus 1",
-      "floor_count": "floor count 1",
-      "fire_grade": "fire grade 1",
-      "manager_id": 1,
-      "address_code": "address code 1"
-    },
-    {
-      "id": 2,
-      "name": "name 2",
-      "campus": "campus 2",
-      "floor_count": "floor count 2",
-      "fire_grade": "fire grade 2",
-      "manager_id": 2,
-      "address_code": "address code 2"
-    },
-    {
-      "id": 3,
-      "name": "name 3",
-      "campus": "campus 3",
-      "floor_count": "floor count 3",
-      "fire_grade": "fire grade 3",
-      "manager_id": 3,
-      "address_code": "address code 3"
-    }
-  ],
-  "fireDevice": [
-    {
-      "id": 1,
-      "building_id": 1,
-      "device_code": "device code 1",
-      "device_type": "HYDRANT",
-      "floor": "floor 1",
-      "location_desc": "location desc 1",
-      "install_date": "2026-06-11T09:00:00Z",
-      "status": "IN_PROGRESS",
-      "next_maintenance_at": "2026-06-11T09:00:00Z"
-    },
-    {
-      "id": 2,
-      "building_id": 2,
-      "device_code": "device code 2",
-      "device_type": "SMOKE_DETECTOR",
-      "floor": "floor 2",
-      "location_desc": "location desc 2",
-      "install_date": "2026-06-12T09:00:00Z",
-      "status": "SUBMITTED",
-      "next_maintenance_at": "2026-06-12T09:00:00Z"
-    },
-    {
-      "id": 3,
-      "building_id": 3,
-      "device_code": "device code 3",
-      "device_type": "SPRINKLER",
-      "floor": "floor 3",
-      "location_desc": "location desc 3",
-      "install_date": "2026-06-13T09:00:00Z",
-      "status": "PLANNED",
-      "next_maintenance_at": "2026-06-13T09:00:00Z"
-    }
-  ],
-  "inspectionTask": [
-    {
-      "id": 1,
-      "building_id": 1,
-      "inspector_id": 1,
-      "plan_date": "2026-06-11T09:00:00Z",
-      "task_type": "HYDRANT",
-      "status": "IN_PROGRESS",
-      "checklist_version": "checklist version 1",
-      "finished_at": "2026-06-11T09:00:00Z"
-    },
-    {
-      "id": 2,
-      "building_id": 2,
-      "inspector_id": 2,
-      "plan_date": "2026-06-12T09:00:00Z",
-      "task_type": "SMOKE_DETECTOR",
-      "status": "SUBMITTED",
-      "checklist_version": "checklist version 2",
-      "finished_at": "2026-06-12T09:00:00Z"
-    },
-    {
-      "id": 3,
-      "building_id": 3,
-      "inspector_id": 3,
-      "plan_date": "2026-06-13T09:00:00Z",
-      "task_type": "SPRINKLER",
-      "status": "PLANNED",
-      "checklist_version": "checklist version 3",
-      "finished_at": "2026-06-13T09:00:00Z"
-    }
-  ],
-  "inspectionResult": [
-    {
-      "id": 1,
-      "task_id": 1,
-      "device_id": 1,
-      "item_code": "item code 1",
-      "result_status": "IN_PROGRESS",
-      "measured_value": "measured value 1",
-      "photo_url": "/mock/photo_url-1.png",
-      "note": "note 1"
-    },
-    {
-      "id": 2,
-      "task_id": 2,
-      "device_id": 2,
-      "item_code": "item code 2",
-      "result_status": "SUBMITTED",
-      "measured_value": "measured value 2",
-      "photo_url": "/mock/photo_url-2.png",
-      "note": "note 2"
-    },
-    {
-      "id": 3,
-      "task_id": 3,
-      "device_id": 3,
-      "item_code": "item code 3",
-      "result_status": "PLANNED",
-      "measured_value": "measured value 3",
-      "photo_url": "/mock/photo_url-3.png",
-      "note": "note 3"
-    }
-  ],
-  "hazardTicket": [
-    {
-      "id": 1,
-      "result_id": 1,
-      "severity": "severity 1",
-      "owner_id": 1,
-      "deadline": "deadline 1",
-      "rectify_status": "IN_PROGRESS",
-      "rectify_note": "rectify note 1",
-      "closed_at": "2026-06-11T09:00:00Z"
-    },
-    {
-      "id": 2,
-      "result_id": 2,
-      "severity": "severity 2",
-      "owner_id": 2,
-      "deadline": "deadline 2",
-      "rectify_status": "SUBMITTED",
-      "rectify_note": "rectify note 2",
-      "closed_at": "2026-06-12T09:00:00Z"
-    },
-    {
-      "id": 3,
-      "result_id": 3,
-      "severity": "severity 3",
-      "owner_id": 3,
-      "deadline": "deadline 3",
-      "rectify_status": "PLANNED",
-      "rectify_note": "rectify note 3",
-      "closed_at": "2026-06-13T09:00:00Z"
-    }
-  ]
+    "building": [
+        {"id": 1, "name": "A栋研发楼", "campus": "滨河科技园", "floor_count": 12,
+         "fire_grade": "一级", "manager_id": 1, "address_code": "BH-A-01"},
+        {"id": 2, "name": "B栋宿舍楼", "campus": "滨河科技园", "floor_count": 8,
+         "fire_grade": "二级", "manager_id": 2, "address_code": "BH-B-02"},
+    ],
+    "fireDevice": [
+        {"id": 1, "building_id": 1, "device_code": "EXT-1001", "device_type": "EXTINGUISHER",
+         "floor": "3F", "location_desc": "A栋3层茶水间旁", "install_date": "2023-05-10",
+         "status": "FAULT", "next_maintenance_at": "2026-11-01"},
+        {"id": 2, "building_id": 1, "device_code": "EXT-1002", "device_type": "EXTINGUISHER",
+         "floor": "1F", "location_desc": "A栋1层大堂前台", "install_date": "2022-03-18",
+         "status": "FAULT", "next_maintenance_at": "2026-11-01"},
+        {"id": 3, "building_id": 2, "device_code": "SD-2001", "device_type": "SMOKE_DETECTOR",
+         "floor": "5F", "location_desc": "B栋5层东侧走廊", "install_date": "2024-01-22",
+         "status": "MAINTAINING", "next_maintenance_at": "2026-12-15"},
+        {"id": 4, "building_id": 1, "device_code": "SP-3001", "device_type": "SPRINKLER",
+         "floor": "B1", "location_desc": "A栋地下车库喷淋泵房", "install_date": "2021-11-08",
+         "status": "NORMAL", "next_maintenance_at": "2026-10-30"},
+    ],
+    "inspectionTask": [
+        {"id": 1, "building_id": 1, "inspector_id": 1, "plan_date": "2026-09-10",
+         "task_type": "MONTHLY", "status": "REVIEWED", "checklist_version": "v2026.3",
+         "finished_at": "2026-09-10"},
+        {"id": 2, "building_id": 1, "inspector_id": 1, "plan_date": "2026-10-03",
+         "task_type": "SPECIAL", "status": "REVIEWED", "checklist_version": "v2026.3",
+         "finished_at": "2026-10-03"},
+        {"id": 3, "building_id": 2, "inspector_id": 2, "plan_date": "2026-09-28",
+         "task_type": "MONTHLY", "status": "REVIEWED", "checklist_version": "v2026.3",
+         "finished_at": "2026-09-28"},
+        {"id": 4, "building_id": 1, "inspector_id": 1, "plan_date": "2026-09-20",
+         "task_type": "MONTHLY", "status": "REVIEWED", "checklist_version": "v2026.3",
+         "finished_at": "2026-09-20"},
+    ],
+    "inspectionResult": [
+        {"id": 1, "task_id": 1, "device_id": 1, "item_code": "EXT-PRESSURE",
+         "result_status": "ABNORMAL", "measured_value": "压力表指针位于红区",
+         "photo_url": "/mock/ext-1001-0910.jpg", "note": "灭火器压力不足，需尽快更换"},
+        {"id": 2, "task_id": 2, "device_id": 1, "item_code": "EXT-APPEARANCE",
+         "result_status": "ABNORMAL", "measured_value": "喷管开裂",
+         "photo_url": "/mock/ext-1001-1003.jpg", "note": "复检仍发现喷管老化开裂，上次问题未修干净"},
+        {"id": 3, "task_id": 4, "device_id": 2, "item_code": "EXT-EXPIRE",
+         "result_status": "ABNORMAL", "measured_value": "出厂满5年未水压试验",
+         "photo_url": "/mock/ext-1002.jpg", "note": "灭火器超期，安排送检"},
+        {"id": 4, "task_id": 3, "device_id": 3, "item_code": "SD-ALARM",
+         "result_status": "ABNORMAL", "measured_value": "一周内误报3次",
+         "photo_url": "/mock/sd-2001.jpg", "note": "烟感频繁误报，需清洁或更换探测器"},
+        {"id": 5, "task_id": 4, "device_id": 4, "item_code": "SP-WATER-PRESSURE",
+         "result_status": "ABNORMAL", "measured_value": "0.4MPa（标准≥0.6MPa）",
+         "photo_url": "/mock/sp-3001.jpg", "note": "喷淋管网压力偏低"},
+    ],
+    "hazardTicket": [
+        {"id": 1, "result_id": 1, "severity": "HIGH", "owner_id": 1,
+         "owner_name": "安盾消防·李工", "deadline": "2026-09-20",
+         "rectify_note": "已更换同型号4kg干粉灭火器，瓶体编号 AH-2026-0881",
+         "rectified_at": "2026-09-18", "closed_at": ""},
+        {"id": 2, "result_id": 2, "severity": "HIGH", "owner_id": 1,
+         "owner_name": "安盾消防·李工", "deadline": "2026-10-10",
+         "rectify_note": "再次更换喷管并补充灭火剂",
+         "rectified_at": "2026-10-04", "closed_at": ""},
+        {"id": 3, "result_id": 3, "severity": "MEDIUM", "owner_id": 2,
+         "owner_name": "永晟维保·赵工", "deadline": "2026-10-12",
+         "rectify_note": "灭火器已拆下送检，预计10月9日装回，期间放置备用瓶",
+         "rectified_at": "2026-10-06", "closed_at": ""},
+        {"id": 4, "result_id": 4, "severity": "LOW", "owner_id": 2,
+         "owner_name": "永晟维保·赵工", "deadline": "2026-09-30",
+         "rectify_note": "", "rectified_at": "", "closed_at": ""},
+        {"id": 5, "result_id": 5, "severity": "CRITICAL", "owner_id": 1,
+         "owner_name": "安盾消防·李工", "deadline": "2026-09-25",
+         "rectify_note": "维修稳压泵并补水，管网压力恢复 0.7MPa",
+         "rectified_at": "2026-09-23", "closed_at": ""},
+    ],
+    # 复验记录：一张隐患单可多次复验；结论以最近一次为准
+    "verification": [
+        {"id": 1, "ticket_id": 1, "verified_at": "2026-09-19", "inspector": "周敏",
+         "result": "FAIL", "note": "压力仍处红区，疑似瓶体未实际更换",
+         "new_deadline": "2026-09-30"},
+        {"id": 2, "ticket_id": 2, "verified_at": "2026-10-05", "inspector": "周敏",
+         "result": "FAIL", "note": "喷管仍有裂纹，复验不合格",
+         "new_deadline": "2026-10-15"},
+        {"id": 3, "ticket_id": 5, "verified_at": "2026-09-24", "inspector": "王磊",
+         "result": "PASS", "note": "稳压泵运行正常，管网压力达标",
+         "new_deadline": ""},
+    ],
+    "auditLog": [],
 }
